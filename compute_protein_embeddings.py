@@ -1,20 +1,15 @@
-from fileinput import filename
 import os
 import time
 import numpy as np
-import matplotlib.pyplot as plt
 import pandas as pd
 from Bio import SeqIO
 import pickle
 import shutil
 import zipfile
 
-# assert torch.cuda.is_available(), "CUDA is not available"
-
 import warnings
 warnings.filterwarnings("ignore")
 import argparse
-from re import M
 
 parser = argparse.ArgumentParser()
 parser.add_argument("--emb_name", default=None, type=str, help="Embedding name : onehot, bert, xlnet, t5")

@@ -45,7 +45,7 @@ From now on, the root folder of the python script will be considered to be the o
 
 ### Running the bash scripts (example of a GPU script)
 
-sbatch --job-name job_name --output job_name.txt --emb_name bert --input_dataset datasets/dataset.csv --output_folder embeddings compute_embeddings_gpu.sh
+```sbatch --job-name job_name --output job_name.txt --emb_name bert --input_dataset datasets/dataset.csv --output_folder embeddings compute_embeddings_gpu.sh```
 
 Where : 
 

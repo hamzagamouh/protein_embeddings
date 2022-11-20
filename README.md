@@ -15,10 +15,10 @@ The following environment setup instructions are for users that have an account 
 
 If you want to run the docker image in interactive mode :
 
-a. Run ```salloc -p debug-short``` for CPU mode, or ```salloc -p gpu-short``` for GPU mode.
-b. Change directory to where your image folder is stored. (if you run ```ls``` you should see ```biopython``` folder !)
-c. Then run your image by running ```ch-run biopython bash``` 
-d. You are now inside the image and you can make changes, test the code...
+1. Run ```salloc -p debug-short``` for CPU mode, or ```salloc -p gpu-short``` for GPU mode.
+2. Change directory to where your image folder is stored. (if you run ```ls``` you should see ```biopython``` folder !)
+3. Then run your image by running ```ch-run biopython bash``` 
+4. You are now inside the image and you can make changes, test the code...
 
 
 ### Computing embeddings 

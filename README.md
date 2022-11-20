@@ -4,7 +4,18 @@ This is a repository for computing protein language model embeddings using the b
 
 
 ### Environment (KSI cluster)
-The following environment setup instructions are for users that have an account in the following computational clusters KSI : <b>parlab</b> and <b>gpulab</b>. More information can be found in https://gitlab.mff.cuni.cz/mff/hpc/clusters
+The following environment setup instructions are for users that have an account in the following computational clusters of KSI MFF UK : <b>parlab</b> and <b>gpulab</b>. More information about the clusters can be found in https://gitlab.mff.cuni.cz/mff/hpc/clusters
 
-1. 
+1. Clone the repository ```git clone https://github.com/hamzagamouh/protein_embeddings.git``` 
+2. Run ```cd protein_embeddings``` to go to the repo directory (where a dockerFile is stored)
+3. Run ```salloc -C docker``` to switch to a node where docker is installed.
+4. Run ```ch-image build -t biopython .``` to create a docker image (for example here the name of the image will be "biopython").
+5. Run ```ch-convert -i docker biopython .``` to convert the docker image to a directory structure.
+6. Import CUDA libaries by running ```srun -p gpu-short --gpus=1 ch-fromhost --nvidia .```
+
+
+### Embedding computation
+
+
+
 

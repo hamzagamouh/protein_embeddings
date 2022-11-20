@@ -22,7 +22,39 @@ If you want to run the docker image in interactive mode :
 
 
 ### Computing embeddings 
-For embedding computation 
+The current code supports the following embeddings from [bio-embeddings library](https://docs.bioembeddings.com/v0.2.3/api/bio_embeddings.embed.html) :
 
+- ```OneHotEncodingEmbedder``` 
+- ```ProtTransBertBFDEmbedder```
+- ```ProtTransXLNetUniRef100Embedder```
+- ```ProtTransT5XLU50Embedder```
 
+There are two options to compute embeddings :
+
+* Running the batch script ```compute_protein_embeddings_cpu.sh```. This script runs the computation on a CPU. It may be time consuming but it is most suitable for embeddings whose memory doesn't fit in the GPU RAM. This is the case for the <b>t5 embedding.</b>
+
+* Running the batch script ```compute_protein_embeddings_gpu.sh```. This script runs the computation on GPUs. This is suitable for other embeddings like <b>bert and xlnet embeddings.</b>
+
+You can provide one of the following inputs to the scripts :
+
+- the path to a <b>.csv</b> file that has at least a column named "sequence" .
+- the path to a folder that contains multiple <b>.pdb</b> files
+- the path to a <b>.fa</b> FASTA file.
+
+From now on, the root folder of the python script will be considered to be the one that you specify in the --bind argument inside the ```.sh``` script. This is where all of your datasets and outputs are expected to be.
+
+### Running the bash scripts (example of a GPU script)
+
+sbatch --job-name job_name --output job_name.txt --emb_name bert --input_dataset datasets/dataset.csv --output_folder embeddings compute_embeddings_gpu.sh
+
+Where : 
+
+- ```job_name``` : the name of your job
+- ```output``` : the saved logs
+- ```emb_name``` : the embedding name "onehot", "bert", "xlnet" or "t5"
+- ```input_dataset``` : the input dataset
+- ```output_folder``` : the output folder
+
+### Expected output
+The output will be a ```.zip``` file that contains the embeddings for each sequence in ```.npy``` format, as well as a ```.csv``` file that contains the mappings of the sequence IDs and sequences to the filenames of the embeddings in the ```.zip``` file.
 

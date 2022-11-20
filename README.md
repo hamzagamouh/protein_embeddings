@@ -13,9 +13,15 @@ The following environment setup instructions are for users that have an account 
 5. Run ```ch-convert -i docker biopython .``` to convert the docker image to a directory structure.
 6. Import CUDA libaries by running ```srun -p gpu-short --gpus=1 ch-fromhost --nvidia .```
 
+If you want to run the docker image in interactive mode :
+a. Run ```salloc -p debug-short``` for CPU mode, or ```salloc -p gpu-short``` for GPU mode.
+b. Change directory to where your image folder is stored. (if you run ```ls``` you should see ```biopython``` folder !)
+c. Then run your image by running ```ch-run biopython bash``` 
+d. You are now inside the image and you can make changes, test the code...
 
-### Embedding computation
 
+### Computing embeddings 
+For embedding computation 
 
 
 

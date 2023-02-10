@@ -18,7 +18,8 @@ If you want to run the docker image in interactive mode :
 1. Run ```salloc -p debug-short``` for CPU mode, or ```salloc -p gpu-short``` for GPU mode.
 2. Change directory to where your image folder is stored. (if you run ```ls``` you should see ```biopython``` folder !)
 3. Then run your image by running ```ch-run --bind /src:/app/output biopython bash``` where `src` is the source folder.
-4. You are now inside the image and you can make changes, test the code...
+4. For GPU mode, you need also to import the CUDA libraries by running `export LD_LIBRARY_PATH=/usr/local/cuda/lib64ˋ
+5. You are now inside the image and you can make changes, test the code...
 
 
 ### Computing embeddings 

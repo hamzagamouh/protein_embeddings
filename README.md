@@ -12,7 +12,7 @@ The following environment setup instructions are for users that have an account 
 4. Run ```ch-image build -t biopython ./biopython``` to create a docker image (for example here the name of the image will be "biopython").
 5. Run ```ch-convert biopython .``` to convert the docker image to a directory structure.
 6. Import CUDA libaries by running ```srun -p gpu-short --gpus=1 ch-fromhost --nvidia .```
-7. Create the output directory ```mkdir biopython/app/output```. This is the directory that will be mounted to a local folder (of your choice), the python script expects inputs and outputs in ```/app/output``` inside the image.
+7. Create the output directory ```mkdir biopython/app/output```. This is the directory that will be mounted to a local folder (of your choice), the python script expects inputs and outputs in ```/app/output``` inside the image. 
 
 If you want to run the docker image in interactive mode :
 
@@ -21,6 +21,7 @@ If you want to run the docker image in interactive mode :
 3. Then run your image by running ```ch-run --bind /src:/app/output biopython bash``` where `src` is the source folder.
 4. For GPU mode, you need also to import the CUDA libraries by running ```export LD_LIBRARY_PATH=/usr/local/cuda/lib64```
 5. You are now inside the image and you can make changes, test the code...
+6. All inputs and outputs of the python script should be in the ```/scr``` directory
 
 
 ### Computing embeddings 

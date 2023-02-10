@@ -72,7 +72,7 @@ EMBEDDER=get_embedder(emb_name)
 # Process pdb dataset
 if args.input_dataset is not None:
     input_dataset="/app/output/"+args.input_dataset
-    if not os.isfile(input_dataset): 
+    if not os.path.isfile(input_dataset): 
         dataset=os.path.basename(input_dataset)
         DF={"pdb_id":[],"chain_id":[],"sequence":[],emb_name+"_emb_path":[]}
 

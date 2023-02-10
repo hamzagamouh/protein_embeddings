@@ -10,7 +10,7 @@ The following environment setup instructions are for users that have an account 
 2. Run ```cd protein_embeddings``` to go to the repo directory (where a dockerFile is stored)
 3. Run ```salloc -C docker``` to switch to a node where docker is installed.
 4. Run ```ch-image build -t biopython .``` to create a docker image (for example here the name of the image will be "biopython").
-5. Run ```ch-convert -i docker biopython .``` to convert the docker image to a directory structure.
+5. Run ```ch-convert biopython .``` to convert the docker image to a directory structure.
 6. Import CUDA libaries by running ```srun -p gpu-short --gpus=1 ch-fromhost --nvidia .```
 
 If you want to run the docker image in interactive mode :

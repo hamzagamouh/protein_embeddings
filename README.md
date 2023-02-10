@@ -48,7 +48,7 @@ From now on, the root folder of the python script will be considered to be the o
 
 ### Running the bash scripts (example of a GPU script)
 
-```sbatch --job-name job_name --output job_name.txt --emb_name bert --input_dataset datasets/dataset.csv --output_folder embeddings compute_embeddings_gpu.sh```
+```sbatch --job-name job_name --output job_name.txt --emb_name bert --input_dataset datasets/dataset.csv --output_folder dest compute_embeddings_gpu.sh```
 
 Where : 
 
@@ -57,6 +57,7 @@ Where :
 - ```emb_name``` : the embedding name "onehot", "bert", "xlnet" or "t5"
 - ```input_dataset``` : the input dataset
 - ```output_folder``` : the output folder
+- ```dest``` : you should expect all computed embeddings to be here. ```dest``` should also be inside the ```src``` directory that is used in ```--bind``` argument. 
 
 ### Expected output
 The output will be a ```.zip``` file that contains the embeddings for each sequence in ```.npy``` format, as well as a ```.csv``` file that contains the mappings of the sequence IDs and sequences to the filenames of the embeddings in the ```.zip``` file.

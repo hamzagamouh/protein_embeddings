@@ -45,7 +45,7 @@ All the scripts will be run with bind mount to the ```/home``` directory. This i
 
 ### Running the bash scripts (example of a GPU script)
 
-```sbatch --job-name job_name --output job_name.txt /home/gamouhh/files/protein_embeddings/compute_embeddings_gpu.sh --emb_name bert --input_dataset /home/gamouhh/files/protein_embeddings/example_data/pdb_dataset --output_folder /home/gamouhh/files```
+```sbatch --job-name job_name --output job_name.txt /home/gamouhh/protein_embeddings/compute_embeddings_gpu.sh --emb_name bert --input_dataset /home/gamouhh/protein_embeddings/example_data/pdb_dataset --output_folder /home/gamouhh```
 
 (Here gamouhh is a username !!)
 

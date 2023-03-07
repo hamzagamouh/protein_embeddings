@@ -10,15 +10,15 @@ The following environment setup instructions are for users that have an account 
 2. Run ```salloc -w dw05``` to switch to a node where docker is installed.
 3. Run ```sudo docker build -t prot_embs ~/protein_embeddings``` to create a docker image (for example here the name of the image will be "prot_embs").
 4. Run ```ch-convert -i docker prot_embs ~/prot_embs/``` to convert the docker image to a directory structure.
-5. Import CUDA libaries by running ```srun -p gpu-short --gpus=1 ch-fromhost --nvidia ~/prot_embs/```
+5. Exit the current job using ```CTRL+D``` 
+6. Import CUDA libaries by running ```srun -p gpu-short --gpus=1 ch-fromhost --nvidia ~/prot_embs/```
 
 
 If you want to run the docker image in interactive mode :
 
 1. Run ```salloc -p debug-short``` for CPU mode, or ```salloc -p gpu-short --gpus=1``` for GPU mode.
-2. Run your image : ```ch-run --bind /home/:/home/ ~/prot_embs bash``` where `src` is the source folder.
-4. For GPU mode, you need also to import the CUDA libraries by running ```export LD_LIBRARY_PATH=/usr/local/lib```
-5. You are now inside the image and you can make changes, test the code...
+2. Run your image : ```ch-run --bind /home/:/home/ ~/prot_embs bash```.
+3. You are now inside the image and you can make changes, test the code...
 
 
 ### Computing embeddings 
@@ -45,12 +45,14 @@ All the scripts will be run with bind mount to the ```/home``` directory. This i
 
 ### Running the bash scripts (example of a GPU script)
 
-```sbatch --job-name job_name --output job_name.txt --emb_name bert --input_dataset ~/datasets/dataset.csv --output_folder ~/embeddings compute_embeddings_gpu.sh```
+```sbatch --job-name job_name --output job_name.txt /home/gamouhh/files/protein_embeddings/compute_embeddings_gpu.sh --emb_name bert --input_dataset /home/gamouhh/files/protein_embeddings/example_data/pdb_dataset --output_folder /home/gamouhh/files```
+
+(Here gamouhh is a username !!)
 
 Where : 
 
 - ```job_name``` : the name of your job
-- ```output``` : the saved logs
+- ```output``` : the saved logs (here expected to be in the same directory where you run the above code)
 - ```emb_name``` : the embedding name "onehot", "bert", "xlnet" or "t5"
 - ```input_dataset``` : the input dataset
 - ```output_folder``` : the output folder

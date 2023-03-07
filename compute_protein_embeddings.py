@@ -17,9 +17,9 @@ import argparse
 from re import M
 
 parser = argparse.ArgumentParser()
-parser.add_argument("--emb_name", default=None, type=str, help="Embedding name : onehot, bert, xlnet, t5")
-parser.add_argument("--input_dataset", default=None, type=str, help="Input dataset")
-parser.add_argument("--output_folder", default="/home/", type=str, help="Output folder")
+parser.add_argument("--emb_name", default="onehot", type=str, help="Embedding name : onehot, bert, xlnet, t5")
+parser.add_argument("--input_dataset", default="/app/example_data/pdb_dataset", type=str, help="Input dataset")
+parser.add_argument("--output_folder", default="/home/gamouhh", type=str, help="Output folder")
 
 
 def process_record(rec):
@@ -63,7 +63,7 @@ output_folder=args.output_folder
 emb_name=args.emb_name
 
 # Create embedder
-print("Import embedder...")
+print(f"Importing {args.emb_name} embedder...")
 
 EMBEDDER=get_embedder(emb_name)
 
@@ -74,28 +74,32 @@ if args.input_dataset is not None:
     input_dataset=args.input_dataset
     if not os.path.isfile(input_dataset): 
         dataset=os.path.basename(input_dataset)
-        DF={"pdb_id":[],"chain_id":[],"sequence":[],emb_name+"_emb_path":[]}
+        DF={"ID":[],"pdb_id":[],"chain_id":[],"sequence":[],emb_name+"_emb_path":[]}
 
         print(f"Getting sequences from dataset ...")
 
-        missing=[]
+        k=0
         for n,file in enumerate(os.listdir(input_dataset)):
-            if n%500==0:
-                print(f"{n} files processed")
+            print(f"{n+1} files processed")
             prot_file=os.path.join(input_dataset,file)
             # Get sequences embeddings with chain IDs
             with open(prot_file) as handle:
                 for rec in SeqIO.parse(handle, "pdb-atom"):
                     chain_id,seq=process_record(rec)
+                    DF["ID"]+=[k]
                     DF["pdb_id"]+=[file.replace(".pdb","")]
                     DF["chain_id"]+=[chain_id]
                     DF["sequence"]+=[seq]
+                    k+=1
 
     else :
         # Process csv dataset
         if ".csv" in input_dataset:
             print(f"Getting sequences from dataset ...")
-            DF=pd.read_csv(input_dataset)
+            df=pd.read_csv(input_dataset)
+            DF={"ID":[],"sequence":[],emb_name+"_emb_path":[]}
+            DF["ID"]=list(range(df.shape[0]))
+            DF["sequence"]=df["sequence"]
             dataset=os.path.basename(input_dataset.replace(".csv",""))
 
         # Process FASTA dataset

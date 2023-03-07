@@ -13,5 +13,5 @@ while [ $# -gt 0 ]; do
 done
 
 
-srun ch-run --bind /home:/home ~/files/prot_embs -- python /app/compute_protein_embeddings.py --emb_name $emb_name --input_dataset $input_dataset --output_folder $output_folder
+srun ch-run --bind /home:/home ~/prot_embs -- python /app/compute_protein_embeddings.py --emb_name $emb_name --input_dataset $input_dataset --output_folder $output_folder
 

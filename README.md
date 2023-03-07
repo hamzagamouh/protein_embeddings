@@ -8,17 +8,16 @@ The following environment setup instructions are for users that have an account 
 
 1. Clone the repository ```git clone https://github.com/hamzagamouh/protein_embeddings.git``` 
 2. Run ```cd protein_embeddings``` to go to the repo directory (where a dockerFile is stored)
-3. Run ```salloc -C docker``` to switch to a node where docker is installed.
-4. Run ```ch-image build -t biopython ./biopython``` to create a docker image (for example here the name of the image will be "biopython").
-5. Run ```ch-convert biopython .``` to convert the docker image to a directory structure.
-6. Import CUDA libaries by running ```srun -p gpu-short --gpus=1 ch-fromhost --nvidia .```
+3. Run ```salloc -w dw05``` to switch to a node where docker is installed.
+4. Run ```sudo docker build -t prot_embs .``` to create a docker image (for example here the name of the image will be "prot_embs").
+5. Run ```ch-convert -i docker prot_embs ~/prot_embs/``` to convert the docker image to a directory structure.
+6. Import CUDA libaries by running ```srun -p gpu-short --gpus=1 ch-fromhost --nvidia ~/prot_embs/```
 
 If you want to run the docker image in interactive mode :
 
-1. Run ```salloc -p debug-short``` for CPU mode, or ```salloc -p gpu-short``` for GPU mode.
-2. Change directory to where your image folder is stored. (if you run ```ls``` you should see ```biopython``` folder !)
-3. Then run your image by running ```ch-run --bind /src:/app/output biopython bash``` where `src` is the source folder.
-4. For GPU mode, you need also to import the CUDA libraries by running ```export LD_LIBRARY_PATH=/usr/local/cuda/lib64```
+1. Run ```salloc -p debug-short``` for CPU mode, or ```salloc -p gpu-short --gpus=1``` for GPU mode.
+3. Run your image : ```ch-run --bind /home/:/home/ ~/prot_embs bash``` where `src` is the source folder.
+4. For GPU mode, you need also to import the CUDA libraries by running ```export LD_LIBRARY_PATH=/usr/local/lib```
 5. You are now inside the image and you can make changes, test the code...
 
 
@@ -42,11 +41,11 @@ You can provide one of the following inputs to the scripts :
 - the path to a folder that contains multiple <b>.pdb</b> files
 - the path to a <b>.fa</b> FASTA file.
 
-From now on, the root folder of the python script will be considered to be the one that you specify in the --bind argument inside the ```.sh``` script. This is where all of your datasets and outputs are expected to be.
+All the scripts will be run with bind mount to the ```/home``` directory. This is where all of your datasets and outputs are expected to be. Please specify the full path of your datasets in the sbatch scripts.
 
 ### Running the bash scripts (example of a GPU script)
 
-```sbatch --job-name job_name --output job_name.txt --emb_name bert --input_dataset datasets/dataset.csv --output_folder embeddings compute_embeddings_gpu.sh```
+```sbatch --job-name job_name --output job_name.txt --emb_name bert --input_dataset ~/datasets/dataset.csv --output_folder ~/embeddings compute_embeddings_gpu.sh```
 
 Where : 
 

@@ -19,7 +19,7 @@ from re import M
 parser = argparse.ArgumentParser()
 parser.add_argument("--emb_name", default=None, type=str, help="Embedding name : onehot, bert, xlnet, t5")
 parser.add_argument("--input_dataset", default=None, type=str, help="Input dataset")
-parser.add_argument("--output_folder", default="MIonSite/embeddings", type=str, help="Output folder")
+parser.add_argument("--output_folder", default="/home/", type=str, help="Output folder")
 
 
 def process_record(rec):
@@ -71,7 +71,7 @@ EMBEDDER=get_embedder(emb_name)
 
 # Process pdb dataset
 if args.input_dataset is not None:
-    input_dataset="/app/output/"+args.input_dataset
+    input_dataset=args.input_dataset
     if not os.path.isfile(input_dataset): 
         dataset=os.path.basename(input_dataset)
         DF={"pdb_id":[],"chain_id":[],"sequence":[],emb_name+"_emb_path":[]}

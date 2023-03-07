@@ -7,16 +7,16 @@ This is a repository for computing protein language model embeddings using the b
 The following environment setup instructions are for users that have an account in the following computational clusters of KSI MFF UK : <b>parlab</b> and <b>gpulab</b>. More information about the clusters can be found in https://gitlab.mff.cuni.cz/mff/hpc/clusters
 
 1. Clone the repository ```git clone https://github.com/hamzagamouh/protein_embeddings.git``` 
-2. Run ```cd protein_embeddings``` to go to the repo directory (where a dockerFile is stored)
-3. Run ```salloc -w dw05``` to switch to a node where docker is installed.
-4. Run ```sudo docker build -t prot_embs .``` to create a docker image (for example here the name of the image will be "prot_embs").
-5. Run ```ch-convert -i docker prot_embs ~/prot_embs/``` to convert the docker image to a directory structure.
-6. Import CUDA libaries by running ```srun -p gpu-short --gpus=1 ch-fromhost --nvidia ~/prot_embs/```
+2. Run ```salloc -w dw05``` to switch to a node where docker is installed.
+3. Run ```sudo docker build -t prot_embs ~/protein_embeddings``` to create a docker image (for example here the name of the image will be "prot_embs").
+4. Run ```ch-convert -i docker prot_embs ~/prot_embs/``` to convert the docker image to a directory structure.
+5. Import CUDA libaries by running ```srun -p gpu-short --gpus=1 ch-fromhost --nvidia ~/prot_embs/```
+
 
 If you want to run the docker image in interactive mode :
 
 1. Run ```salloc -p debug-short``` for CPU mode, or ```salloc -p gpu-short --gpus=1``` for GPU mode.
-3. Run your image : ```ch-run --bind /home/:/home/ ~/prot_embs bash``` where `src` is the source folder.
+2. Run your image : ```ch-run --bind /home/:/home/ ~/prot_embs bash``` where `src` is the source folder.
 4. For GPU mode, you need also to import the CUDA libraries by running ```export LD_LIBRARY_PATH=/usr/local/lib```
 5. You are now inside the image and you can make changes, test the code...
 

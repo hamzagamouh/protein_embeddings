@@ -2,7 +2,7 @@
 #SBATCH --partition=gpu-long        # partition you want to run job in
 #SBATCH --gpus=1
 #SBATCH --time=7-00:00:00         # walltime for the job in format (days-)hours:minutes:seconds
-#SBATCH --mail-user=hamza.gamouh@gmail.com --mail-type=END,FAIL     # send email when job changes state to email address 
+#SBATCH --mail-user=youremail --mail-type=END,FAIL     # send email when job changes state to email address 
 
 
 export LD_LIBRARY_PATH=/usr/local/lib

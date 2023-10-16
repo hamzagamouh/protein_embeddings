@@ -8,8 +8,8 @@ The following environment setup instructions are for users that have an account 
 
 1. Clone the repository ```git clone https://github.com/hamzagamouh/protein_embeddings.git``` 
 2. Run ```salloc -w dw05``` to switch to a node where docker is installed.
-3. Run ```sudo docker build -t prot_embs ~/protein_embeddings``` to create a docker image (for example here the name of the image will be "prot_embs").
-4. Run ```ch-convert -i docker prot_embs ~/prot_embs/``` to convert the docker image to a directory structure.
+3. Run ```ch-image build -t prot_embs ~/protein_embeddings``` to create a docker image (for example here the name of the image will be "prot_embs").
+4. Run ```ch-convert -i ch-image prot_embs ~/prot_embs/``` to convert the docker image to a directory structure.
 5. Exit the current job using ```CTRL+D``` 
 6. Import CUDA libaries by running ```srun -p gpu-short --gpus=1 ch-fromhost --nvidia ~/prot_embs/```
 

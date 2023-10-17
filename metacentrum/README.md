@@ -38,7 +38,7 @@ export PYTHONPATH=/storage/plzen1/home/skrhakv/test_bio-embeddings/cvmfs/softwar
 ### Run the embeddings
 Now, everything should be ready to run the embeddings computation. Firstly, copy the respective script to your workspace. Secondly, run the script - for example:
 ```
-python3 metacentrum-extract-embeddings-t5.py
+python3 metacentrum-extract-embeddings-t5.py --input='my/path/to/fasta/files'
 ```
 
 

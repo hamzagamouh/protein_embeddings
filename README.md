@@ -2,7 +2,7 @@
 
 This is a repository for computing protein language model embeddings using the bio-embeddings python library.
 
-
+For computing the embeddings on the Metacentrum cluster, please see the `/metacentrum` directory, particularly the `/metacentrum/README.md`.
 ### Environment (KSI cluster)
 The following environment setup instructions are for users that have an account in the following computational clusters of KSI MFF UK : <b>parlab</b> and <b>gpulab</b>. More information about the clusters can be found in https://gitlab.mff.cuni.cz/mff/hpc/clusters
 
